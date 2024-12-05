@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Login</title>
+</head>
+<body class="bg-gray-900">
+{% include 'base.html' %}
+{% block content %}
+    <section class="flex justify-center items-center min-h-screen">
+        <div class="login backdrop-blur-lg p-8 rounded-8xl shadow-lg shadow-indigo-400/50">
+            <div class="login-value">
+                <form action="{% url 'login_user' %}" method="post" class="space-y-6">
+                    {% csrf_token %}
+
+                    <h2 class="pb-4 text-white text-3xl font-bold">EWIT MYSTIC PORTAL</h2>
+                    <div class="relative">
+                        <ion-icon name="mail-outline" class="absolute right-2 text-white text-xl top-2.5"></ion-icon>
+                        <input type="text" name="usn" required class="w-full h-12 bg-transparent border-b-2 border-gray-500 outline-none text-2xl px-9 text-white">
+                        <label for="" class="absolute top-1/2 left-1 transform -translate-y-1/2 text-white text-base pointer-events-none transition duration-500">USN</label>
+                    </div>
+                    <div class="relative">
+                        <ion-icon name="lock-closed-outline" class="absolute right-2 text-white text-xl top-2.5"></ion-icon>
+                        <input type="password" name="password" required class="w-full h-12 bg-transparent border-b-2 border-gray-500 outline-none text-2xl px-9 text-white">
+                        <label for="" class="absolute top-1/2 left-1 transform -translate-y-1/2 text-white text-base pointer-events-none transition duration-500">Password</label>
+                    </div>
+                    <button class="w-10/12 h-10 rounded-full bg-white border-none ml-7 outline-none cursor-pointer text-base font-semibold">Log in</button>
+                    <div class="register text-white text-sm text-center my-6">
+                        <p>Don't have an account? <a href="{% url 'contact' %}" class="font-semibold hover:underline">Contact Us</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Ignore Mac system files
+.DS_store
+.vscode
+# Ignore node_modules folder
+node_modules/
+# Ignore files related to API keys
+.env
+venv/
+__pycache__/
+migrations/
+

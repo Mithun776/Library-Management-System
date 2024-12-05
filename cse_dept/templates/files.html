@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+.notification-card {
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px; /* Increase the border-radius value for a more curved appearance */
+    padding: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 20px;
+    margin-top: 10%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex; /* Center the elements horizontally */
+    flex-direction: column; /* Stack the elements vertically */
+    align-items: center; /* Center the elements horizontally */
+    text-align: center; /* Center the text within the card */
+}
+
+.notification-card h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.notification-card p {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.notification-card a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.notification-card a:hover {
+    text-decoration: underline;
+}
+h3{
+    text-align: center;
+font-size: 40px;}
+
+</style>
+<h3>Resources</h3>
+        {% for item in list %}
+        <div class="notification-card">
+            <h2>Title: {{item.title}}</h2>
+            <p>uploaded: {{ item.date|date:"d M Y" }}</p>
+            <p>Description: {{ item.description }}</p>
+            <p><a href="{{ item.file }}">View</a></p>
+        </div>
+        {% endfor %}
+   
+{% endblock %}
+{% include 'footer.html' %}

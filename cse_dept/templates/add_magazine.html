@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+  {{ message }}
+</div>
+{% endfor %}
+
+<style>
+    .card {
+        margin-top: 80px;
+        margin-bottom: 50px;
+        border-radius: 10px;
+        margin:auto;
+        width: 80%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-body {
+        padding: 30px;
+        margin-top: 50px
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="url"] {
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    button[type="submit"] {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0069d9;
+    }
+
+    .invalid-feedback {
+        color: red;
+    }
+</style>
+<h1 class="text-3xl p-10"> Magazine</h1>
+<div class="card">
+    <div class="card-body">
+        <form method="POST" class="needs-validation card-form" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                TITLE:
+                <input type="text" name="name" value="{{ form.name.value }}">
+            </div>
+            <div class="form-group">
+                ISBN:
+               <input type="text" name="isbn" value="{{ form.staff_id.value }}">
+            </div>
+            <div class="form-group">
+                PUBLISHER:
+                <input type="text" name="author" value="{{ form.phone.value }}">
+            </div>
+            <div class="form-group">
+                CATEGORY:
+                <input type="text" name="category" value="{{ form.email.value }}">
+            </div> 
+            <div class="form-group">
+                Edition:
+                <input type="text" name="edition">
+            
+            <button type="submit" class="btn btn-primary">ADD</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% include 'footer.html' %}

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+
+    <style>
+        .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+    }
+
+    /* Form input fields */
+    .form-container input[type=text], .form-container input[type=file] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 4px;
+    }
+
+    /* Form submit button */
+    .form-container button[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        border-radius: 4px;
+    }
+
+    /* Form submit button on hover */
+    .form-container button[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+        table {
+            width: 80%;
+            margin: 10px auto;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        table tr td:nth-child(5),
+table tr th:nth-child(5) {
+    visibility: hidden;
+}
+
+/* Show the delete column when the row is hovered */
+table tr:hover td:nth-child(5),
+table tr:hover th:nth-child(5) {
+    visibility: visible;
+}
+    </style>
+<h1 class="font-bold text-3xl">Files</h1>
+<div class="grid grid-cols-2 gap-4 p-10">
+<div class="content-container">
+    <form method="post" enctype="multipart/form-data" class="form-container">
+        {% csrf_token %}
+        <label>Upload the file</label>
+        <input type="file" name="document" required>
+        <label>Title</label>
+        <input type="text" name="title" required>
+        <label>Description</label>
+        <input type="text" name="desp" required>
+        <button type="submit">Upload</button>
+    </form>
+    </div>
+   <div class="table-container">
+    <table border="0">
+        <tr class="pt-0">
+            <th class="pt-0">Title</th>
+            <th>Description</th>
+            <th>File</th>
+            <th>Uploaded By</th>
+        </tr>
+        {% for item in list %}
+        <tr>
+            <td>{{ item.title }}</td>
+            <td>{{ item.description }}</td>
+            <td><a href="{{ item.file }}"> View</a></td>
+            <td>{{ item.from}}</td>
+            <td class="del"><a href="{% url 'lib_files_delete' item.id %}"><img src="{% static 'css/delete.gif' %}"></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+   </div>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,121 @@
+#header h1 a {
+    color: #FF5733;
+}
+<<<<<<< HEAD
+
+=======
+@font-face {
+  font-family: vintage;
+  src: url("../vin.otf");
+}
+*{
+  font-family: vintage, sans-serif;
+}
+>>>>>>> origin/main
+
+/* Style the dropdown container */
+
+.alert{
+<<<<<<< HEAD
+=======
+  font-family: vintage, sans-serif;
+>>>>>>> origin/main
+  font-size: 24px;
+  text-align: center;
+  color: #000000;
+}
+body {
+<<<<<<< HEAD
+  margin: 10px;
+}
+
+h1 {
+=======
+  font-family: vintage, sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-family: vintage, sans-serif;
+>>>>>>> origin/main
+  font-size: 25px;
+  text-align: center;
+  color: #FF5733;
+}
+logo{
+<<<<<<< HEAD
+=======
+    font-family: vintage, sans-serif;
+>>>>>>> origin/main
+    font-size: 25px;
+    text-align: center;
+color: #FF5733;
+}
+<<<<<<< HEAD
+=======
+nav{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,26,121,1) 0%, rgba(7,65,150,1) 36%, rgba(4,133,200,1) 58%, rgba(2,193,229,1) 79%, rgba(0,254,255,1) 100%);
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  color: #f2f2f2;
+  margin:0;
+}
+>>>>>>> origin/main
+
+li {
+  list-style: none;
+}
+
+<<<<<<< HEAD
+=======
+.navbar a {
+  float: left;
+  display: flex;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  font-family: vintage, sans-serif;
+  transition: 0.3s;
+}
+
+
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+>>>>>>> origin/main
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: rgb(2,0,36); /* Fallback if browser doesn't support gradient */
+  }
+  .navbar a {
+    float: none;
+    display: flex;
+    font-size: 18px;
+    text-align: left;
+    padding: 14px 8px; /* Reduce horizontal padding for better spacing on small screens */
+  }
+  *{
+    font-family: vintage, sans-serif;
+  }
+
+.book-table-edit {
+font-size: 16px
+}
+}

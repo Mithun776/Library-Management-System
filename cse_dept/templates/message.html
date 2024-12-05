@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Message</h1>
+<div class="message_card">
+    <h2>From: {{ message.sender.name }}({{message.sender.id_number}})</h2><br/>
+    <h4>SUBJECT:{{message.subject}}</h4><br/>
+    <H6>CONTENT</H6>
+    <p>{{ message.content }}</p><br/>
+    <p>posted at: {{ message.timestamp}}</p><br/><br/>
+    <form method="post">
+        {% csrf_token %}
+        <input id="reply" type="text" name="content" placeholder="Content">
+        <button id="reply_button" type="submit" value="Submit">Reply</button>
+    </form>
+    <br/>
+    <button class="btn-primary"><a href="{% url 'delete_message' message.id %}">Delete</a>
+    </button><br/>
+    <button class="btn-primary">    <a href="{% url 'view_messages' %}">Back</a>
+</button>
+</div>
+{% endblock %}

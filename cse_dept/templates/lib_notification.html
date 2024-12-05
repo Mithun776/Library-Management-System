@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+
+<h1 class="text-3xl"> CIRCULARS</h1>
+<div class="flex-col grid grid-cols-2 gap-4 p-10">
+
+<div class="content-container">
+        <div class="form-container">
+
+    <form method="post" enctype="multipart/form-data" class="form-container">
+        {% csrf_token %}
+        <label>Title</label>
+        <input type="text" name="title" required>
+        <label>Content</label>
+        <input type="text" name="content" required>
+        <button type="submit">Post</button>
+    </form>
+        </div>
+</div>
+        <div class="table-container">
+
+    <h1 class="text-2xl">POSTS</h1>
+    <br>
+    <table border="0">
+        <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Uploaded By</th>
+
+        </tr>
+        {% for item in list %}
+        <tr>
+            <td>{{ item.title }}</td>
+            <td>{{ item.content }}</td>
+            <td>{{ item.from}}</td>
+            <td class="del"><a href="{% url 'lib_notif_delete' item.id %}"><img src="{% static 'css/delete.gif' %}"></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+        </div>
+</div>
+<style>
+        .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 5px;
+    }
+
+    /* Form input fields */
+    .form-container input[type=text], .form-container input[type=file] {
+        width: 100%;
+        padding: 12px 1px;
+        margin: 8px 4PX;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 4px;
+    }
+
+    /* Form submit button */
+    .form-container button[type=submit] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        border-radius: 4px;
+    }
+
+    /* Form submit button on hover */
+    .form-container button[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+        table {
+            width: 80%;
+            margin:auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+table tr td:nth-child(4),
+table tr th:nth-child(4) {
+    visibility: hidden;
+}
+
+/* Show the delete column when the row is hovered */
+table tr:hover td:nth-child(4),
+table tr:hover th:nth-child(4) {
+    visibility: visible;
+}
+
+    </style>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .card-deck {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .card {
+        
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 10px;
+        width: 300px;
+    }
+    .card-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .card-text {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    .card-link {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        display: block;
+        font-size: 18px;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+    }
+    .card-link:hover {
+        background-color: #0069d9;
+        color: #fff;
+    }
+</style>
+<h1> STAFF DASHBOARD </h1>
+<div class="card-deck">
+    <div class="card">
+        <h5 class="card-title">Books</h5>
+        <p class="card-text">View and Add books</p>
+        <a href="{% url 'books' %}" class="card-link">Go to Books</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Magazine</h5>
+        <p class="card-text">View and Add magazines</p>
+        <a href="{% url 'mag' %}" class="card-link">Go to Magazines</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Profile</h5>
+        <p class="card-text">View details</p>
+        <a href="{% url 'staff_about' user.id_number %}" class="card-link">Go to Profile</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Upload</h5>
+        <p class="card-text">upload</p>
+        <a href="{% url 'staff_files' user.id_number %}" class="card-link">Go to upload</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title"> Resources</h5>
+        <p class="card-text"> Access notes and other resources</p>
+        <a href="{% url 'files' %}" class="card-link">Resources</a>
+    </div>
+</div>
+{% endblock %}
+{% include 'footer.html' %}

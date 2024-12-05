@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+  {{ message }}
+</div>
+{% endfor %}
+
+<style>
+    .card {
+        margin-top: 80px;
+        margin-bottom: 50px;
+        border-radius: 10px;
+        margin:auto;
+        width: 80%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-body {
+        padding: 30px;
+        margin-top: 50px
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="url"] {
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        width: 100%;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    button[type="submit"] {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0069d9;
+    }
+
+    .invalid-feedback {
+        color: red;
+    }
+</style>
+<h1 class="heading_h1" style="font-size: 40px;">Edit Book</h1>
+<div class="card">
+    <div class="card-body">
+        <form method="POST" class="needs-validation card-form" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.name.id_for_label }}">Name:</label>
+                {{ form.name }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.category.id_for_label }}">Category:</label>
+                {{ form.category }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.isbn.id_for_label }}">ISBN</label>
+                {{ form.isbn }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.author.id_for_label }}">Author</label>
+                {{ form.author }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.edition.id_for_label }}">Edition:</label>
+                {{ form.edition }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.issue_date.id_for_label }}">Issue Date:</label>
+                {{ form.issue_date }}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.ret_date.id_for_label }}">Available:</label>
+                {{ form.ret_date }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">UPDATE</button>
+                <button class="btn btn-primary"><a href="{% url 'delete_book' book_id%}">DELETE</a></button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% include 'footer.html' %}

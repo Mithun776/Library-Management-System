@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .card-deck {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .card {
+        
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        padding: 10px;
+        width: 300px;
+    }
+    .card-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    .card-text {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+    .card-link {
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        display: block;
+        font-size: 18px;
+        padding: 10px;
+        text-align: center;
+        text-decoration: none;
+    }
+    .card-link:hover {
+        background-color: #0069d9;
+        color: #fff;
+    }
+    .navbar{
+       background-color: #007bff; 
+    }
+    h2{
+        text-align: center;
+        margin-top: 50px;
+        font-size: 40px;
+        color:#0048d9
+    
+    }
+</style>
+
+<h2> Admin Dashboard</h2>
+
+<div class="card-deck">
+    <div class="card">
+        <h5 class="card-title">Circulars</h5>
+        <p class="card-text">Post and view circulars</p>
+        <a href="{% url 'lib_notification' %}" class="card-link">Go to Circulars</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Books</h5>
+        <p class="card-text">View and Add books</p>
+        <a href="{% url 'lib_book' %}" class="card-link">Go to Books</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Magazine</h5>
+        <p class="card-text">View and Add magazines</p>
+        <a href="{% url 'lib_mag' %}" class="card-link">Go to Magazines</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Users</h5>
+        <p class="card-text">View and Add members</p>
+        <a href="{% url 'lib_student' %}" class="card-link">Go to Users</a>
+    </div>
+<div class="card">
+        <h5 class="card-title">Resources</h5>
+        <p class="card-text">Post and Add resources</p>
+        <a href="{% url 'lib_files' %}" class="card-link">Go to Resources</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Issue</h5>
+        <p class="card-text">Issue books and magazines</p>
+        <a href="{% url 'lib_issue' %}" class="card-link">Go to Issue</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Return</h5>
+        <p class="card-text">Return books and magazines</p>
+        <a href="{% url 'lib_return' %}" class="card-link">Go to Return</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Automate</h5>
+        <p class="card-text">Automate library tasks</p>
+        <a href="{% url 'lib_auto' %}" class="card-link">Go to Automate</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Payments</h5>
+        <p class="card-text">Pay due fines</p>
+        <a href="{% url 'repay_due' %}" class="card-link">Go to Payments</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Transactions</h5>
+        <p class="card-text">View Transactions</p>
+        <a href="{% url 'transaction_logs' %}" class="card-link">Go to Transactions</a>
+    </div>
+    <div class="card">
+        <h5 class="card-title">Messages</h5>
+        <p class="card-text">View and Reply to Messages</p>
+        <a href="{% url 'view_messages' %}" class="card-link">Go to Messages</a>
+    </div>
+</div>
+{% endblock %}
+{% include 'footer.html' %}

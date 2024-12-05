@@ -1,0 +1,33 @@
+.back{
+    background-image: url("button.png");
+    background-size: 100%;
+background-repeat: no-repeat;
+    padding-top: 600px;
+    z-index: -1;
+    background-attachment: fixed;
+}
+
+.myButton {
+    background-image: url("login1.webp");
+    border-radius: 5px;
+    padding: 100px 150px;
+    font-size: 24px;
+    text-decoration: none;
+    margin: 100px;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    background-color: #3498db;
+    box-shadow: 0px 5px 0px 0px #2980b9;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Styling the hover state of the buttons */
+.myButton:hover {
+    background-color: #2980b9;
+    bottom: 5px;
+}
+
+.content-home{
+  z-index: 1;
+}

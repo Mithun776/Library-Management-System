@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="user">
+    <h2 style="font-size: 50px; text-align: center; color: #d24726"> User Profile</h2>
+     <h2 style="font-size: 35px; color: coral; text-align: center">Welcome Back, {{ name }}</h2>
+    <hr><hr>
+    <marquee style="font-size: 35px; color: #8e1519; text-align: center">Announcement, {{ name }} Your fine: {{ fine }}</marquee>
+    <hr>
+    <table style="font-size: 30px" class="blue" border="1px" align="center">
+    <tr>
+    <th bgcolor="#ff7f50" colspan="2"> Details </th>
+    </tr>
+    <thread>
+    <tr>
+        <td>   NAME: </td> <td>{{ name }}</td>
+        </tr>
+        <hr>
+    </thread>
+    <thread>
+        <tr><td>USN:</td> <td> {{ usn }}</td></tr>
+    </thread>
+    <thread>
+        <tr><td>EMAIL:</td> <td> {{ email }}</td></tr>
+    </thread>
+        <thread>
+            <div class="due-amount"><tr><td>Due Amount: </td><td>{{ fine }}</td></tr>
+        </div>
+        </thread>
+        </table>
+        <h2> Your Books </h2>
+
+        {% if issued %}
+            <div class="issued-book">
+                <table border="1">
+                {% for book in issued.all %}
+        <tr><td>Issued Book:</td><td>{{ book.name }}</td></tr>
+                <tr><td>ISBN: </td><td>{{ book.isbn }}</td></tr>
+                <tr><td>Issue date: </td><td>{{ book.issue_date }}</td></tr>
+                <tr><td>Return date: </td><td>{{ book.ret_date }}</td></tr>
+                {% endfor %}
+        </table>
+    {% else %}
+        <table>
+            <tr><td>Issued Book: </td><td>------</td></tr>
+            <tr><td>ISBN: </td><td>-------</td></tr>
+            <tr><td>Issue date: </td><td>-------</td></tr>
+            <tr><td>Return date: </td><td>-------</td></tr>
+        </table>
+        </div>
+    {% endif %}
+
+    </div>
+    {% include 'footer.html' %}
+{% endblock %}
+
+

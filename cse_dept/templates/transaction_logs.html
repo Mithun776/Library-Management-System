@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .styled-table {
+        align-content: center;
+        align-items: center;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 75%;
+}
+    .styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+    .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+      text-align: left;
+}
+    .styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+</style>
+<h1 style="font-size: 50px">Transactions</h1>
+<div class="flex flex-col p-20 pl-[15rem] justify-center align-center">
+
+<form method="post" class="pb-10 pl-20">
+    {% csrf_token %}
+    <input type="text" name="query" placeholder="Enter Name, ID">
+    <button class="bg-emerald-500 rounded-2xl p-2" type="submit">Search</button>
+</form>
+    <div class="flex flex-col pl-20 pb-5">
+    <p class="font-medium">Total Transactions: {{ total}}</p>
+        <h3><a href="{% url 'transaction_reports' %}">Download</a></h3>
+    </div>
+<table class="styled-table p-5 justify-center align-center border-2">
+    <thead>
+  <tr>
+      <th>Transaction ID</th>
+    <th>User</th>
+    <th>Transaction Type</th>
+    <th>Transaction Date</th>
+  </tr>
+</thead>
+    <tbody>
+{% for log in transaction_logs %}
+    <tr>
+        <td><a href="{% url 'transaction_report' log.id %}">{{ log.id }}</a> </td>
+    <td> {{ log.user.name }}</td>
+    <td> {{ log.transaction_type }}</td>
+    <td> {{ log.transaction_date }}</td>
+                </tr>
+
+{% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock %}

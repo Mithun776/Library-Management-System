@@ -1,0 +1,58 @@
+#header h1 a {
+    color: #FF5733;
+}
+
+
+/* Style the dropdown container */
+
+.alert{
+  font-size: 24px;
+  text-align: center;
+  color: #000000;
+}
+body {
+  margin: 10px;
+}
+
+h1 {
+  font-size: 25px;
+  text-align: center;
+  color: #FF5733;
+}
+logo{
+    font-size: 25px;
+    text-align: center;
+color: #FF5733;
+}
+
+li {
+  list-style: none;
+}
+
+
+.hidden {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: rgb(2,0,36); /* Fallback if browser doesn't support gradient */
+  }
+  .navbar a {
+    float: none;
+    display: flex;
+    font-size: 18px;
+    text-align: left;
+    padding: 14px 8px; /* Reduce horizontal padding for better spacing on small screens */
+  }
+  *{
+    font-family: vintage, sans-serif;
+  }
+
+.book-table-edit {
+font-size: 16px
+}
+}

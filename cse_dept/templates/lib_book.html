@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+      margin-left: 10px;
+      margin-outside: 10px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 90%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+    .styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+    .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+      text-align: left;
+}
+    .styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+   input[type="text"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+    }
+
+    /* Style the submit button */
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+<h1 style="font-size: 40px">Books database</h1>
+<div style="text-align:center;">
+
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="query" placeholder="Enter Name, isbn, access_code">
+    <input type="submit" value="Search">
+</form>
+    <div>
+    <p>total books: {{ total}}</p>
+    <p>total issued books: {{ issued}}</p>
+</div>
+<table class="styled-table border-2">
+  <thead>
+    <tr>
+      <th class="book-table-header">Name</th>
+      <th class="book-table-header">AccCode</th>
+      <th class="book-table-header">ISBN</th>
+      <th class="book-table-header">Edition</th>
+      <th class="book-table-header">Volumes</th>
+      <th class="book-table-header">Reference</th>
+      <th class="book-table-header">Author</th>
+      <th class="book-table-header"> Available Copies</th>
+      <th class="book-table-header">Issue Date</th>
+      <th class="book-table-header">Available On</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if list %}
+      {% for book in list %}
+        <tr>
+          <td class="book-table-data"><a href="{% url 'edit_book' book.id %}">{{ book.name }}</a></td>
+          <td class="book-table-data">{{ book.id }}</td>
+          <td class="book-table-data">{{ book.isbn }}</td>
+          <td class="book-table-data">{{ book.edition }}</td>
+          <td class="book-table-data">{{ book.copies }}</td>
+          {% if book.reference %}
+          <td class="book-table-data">✅</td>
+          {% else %}
+            <td class="book-table-data">❌</td>
+            {% endif %}
+          <td class="book-table-data">{{ book.author }}</td>
+          {% if book.status == 'available' %}
+          <td class="book-table-data">{{ book.available }}✅</td>
+            {% else %}
+                <td class="book-table-data"> {{ book.available }}❌</td>
+                {% endif %}
+          {% if book.issue_date %}
+            <td class="book-table-data">{{ book.issue_date }}</td>
+            <td class="book-table-data">{{ book.available_on }}</td>
+          {% else %}
+            <td class="book-table-data">------</td>
+            <td class="book-table-data">------</td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td colspan="10">No books found.</td>
+      </tr>
+    {% endif %}
+  </tbody>
+</table>
+  <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+{% include 'footer.html' %}
+{% endblock %}
+

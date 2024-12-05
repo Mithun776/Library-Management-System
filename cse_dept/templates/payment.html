@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+  .card {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .navbar{
+       background-color: #007bff;
+    }
+  .form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+
+  button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #45a049;
+  }
+</style>
+
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}">
+  {{ message }}
+</div>
+{% endfor %}
+<h1 class="text-3xl p-10">PAYMENTS</h1>
+<div class="form-container">
+  <form action="{% url 'repay_due' %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="student_id">Student/Staff ID:</label>
+      <input type="text" name="id" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="book_isbn">FINE AMOUNT:</label>
+      <input type="text" name="amount" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">PAY</button>
+  </form>
+</div>
+
+{% if name %}
+<div class="card mt-5 mx-auto" style="width: 18rem;">
+  <div class="card-body">
+    <h3 class="card-title">NAME: {{ name }}</h3>
+    <p class="card-title">FINE: {{ fine }} Rs</p>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% include 'footer.html' %}

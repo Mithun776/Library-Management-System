@@ -1,0 +1,21 @@
+{% include 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <!-- Image at the top of the page -->
+    <div class="back"><img href="{% static 'button.png'%}"></div>
+<div class="content-home">
+    <!-- Buttons -->
+    <a href="{% url 'books' %}" class="myButton">View Books</a>
+    <a href="{% url 'login_user' %}" class="myButton">Profile</a>
+
+    <a href="{% url 'notification' %}" class="myButton">Circulars</a>
+    <a href="{% url 'files' %}" class="myButton">Resources</a>
+    <a href="{% url 'contact' %}" class="myButton">Contact Us</a>
+    <a href="{% url 'rules' %}" class="myButton">Rules</a>
+
+</div>
+
+{% endblock %}
+{% include 'footer.html' %}

@@ -1,0 +1,12 @@
+Django==4.2.6
+django-tailwind
+python-dotenv
+setuptools
+django-channels
+cmake
+dlib
+face-recognition
+cvzone
+reportlab
+django-rest-framework
+django-simple-history

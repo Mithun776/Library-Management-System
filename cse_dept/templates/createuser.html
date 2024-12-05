@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% if user.is_authenticated %}
+{% block content %}
+    <h1>create user</h1>
+<form action="." method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" name="createuser">
+</form>
+{% endblock %}
+{% else %}
+{% include 'login.html' %}
+{% endif %}

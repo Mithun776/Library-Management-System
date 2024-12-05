@@ -1,0 +1,10 @@
+.navbar{
+    backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(100px);
+    padding: 0;
+    margin: 0 auto;
+}
+
+.librarian{
+    background-color: #0b7ad5;
+}

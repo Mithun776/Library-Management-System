@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+      margin-left: 10px;
+      margin-outside: 10px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+    .styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+    .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+      text-align: left;
+
+    }
+    .styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+
+    }
+    .styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+  .navbar{
+       background-color: #007bff; 
+    }
+</style>
+<h1 style="font-size: 40px">Magazines Database</h1>
+<div style="text-align:center;">
+  <button onclick="window.location.href = '{% url 'add_magazine' %}';">Add Magazine</button>
+</div>
+<br>
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>ISBN</th>
+      <th>Author</th>
+      <th>Edition</th>
+      <th>Category</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in list %}
+      <tr>
+        <td><a href="{% url 'edit_magazine' i.id %}">{{i.name}}</a></td>
+        <td>{{i.isbn}}</td>
+        <td>{{i.author}}</td>
+        <td>{{i.edition}}</td>
+        <td>{{i.category}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

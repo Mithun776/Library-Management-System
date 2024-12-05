@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+<button onclick="window.location.href = '{% url 'add_reference' %}';">Add Reference</button>
+<style>
+  .book-table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: auto;
+    .book-table th,
+    .book-table td {
+      border: 1px solid black;
+      padding: 8px;
+      overflow: auto;
+    }
+  }
+
+  .book-table th {
+    background-color: #c74c4c;
+  }
+
+  .book-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .book-table-header {
+    font-weight: bold;
+  }
+
+  .book-table-data {
+    text-align: center;
+  }
+
+  .book-table-edit {
+    text-align: center;
+  }
+  @media (max-width: 768px) {
+    .book-table {
+      display: block;
+      overflow-x: auto;
+      border-collapse: collapse;
+    }
+    td.book-table-data {
+    font-size: small;
+}
+  }
+</style>
+<h1>Reference Books</h1>
+<table class="book-table">
+  <thead>
+    <tr>
+      <th class="book-table-header">Name</th>
+      <th class="book-table-header">ISBN</th>
+      <th class="book-table-header">Copies</th>
+      <th class="book-table-header">Author</th>
+      <th class="book-table-header">Available</th>
+      <th class="book-table-header">Available On</th>
+      <th class="book-table-header">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if list %}
+      {% for r in list %}
+        <tr>
+          <td class="book-table-data">{{ r.name }}</td>
+          <td class="book-table-data">{{ r.isbn }}</td>
+          <td class="book-table-data">{{ r.copies }}</td>
+          <td class="book-table-data">{{ r.author }}</td>
+          <td class="book-table-data">{{ r.available }}</td>
+          {% if book.available %}
+            <td class="book-table-data">{{ r.available_on }}</td>
+          {% else %}
+            <td class="book-table-data">------</td>
+          {% endif %}
+          <td class="book-table-edit"><a href="{% url 'edit_reference' r.id %}">Edit</a></td>
+        </tr>
+      {% endfor %}
+    {% else %}
+      <tr>
+        <td colspan="7">No books found.</td>
+      </tr>
+    {% endif %}
+  </tbody>
+</table>
+{% include 'footer.html' %}
+{% endblock %}
+

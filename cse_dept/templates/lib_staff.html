@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  input[type="text"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+    }
+
+    /* Style the submit button */
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+  .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+      margin-left: 10px;
+      margin-outside: 10px;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+    .styled-table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+    .styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+      text-align: left;
+}
+    .styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+
+</style>
+
+<div style="text-align:center;">
+  <button onclick="window.location.href = '{% url 'add_staff' %}';">Add staff</button>
+</div>
+<form method="post">
+  {% csrf_token %}
+  <input type="text" name="query" placeholder="Search User">
+  <input type="submit" value="Search">
+</form>
+{% if results %}
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Fine</th>
+      <th>Issued Book</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in results %}
+      <tr>
+        <td><a href="{% url 'edit_staff' i.id %}">{{i.name}}</a></td>
+        <td>{{i.staff_id}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone}}</td>
+        <td>{{i.fine}}</td>
+        {% if i.issued_book %}
+        <td>{{ i.issued_book }}</td>
+        {% else %}
+        <td>-------</td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% elif list %}
+<table class="styled-table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Fine</th>
+      <th>Issued Book</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in list %}
+      <tr>
+        <td><a href="{% url 'edit_staff' i.id %}">{{i.name}}</a></td>
+        <td>{{i.staff_id}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.phone}}</td>
+        <td>{{i.fine}}</td>
+        {% if i.issued_book %}
+        <td>{{ i.issued_book }}</td>
+        {% else %}
+        <td>-------</td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+    <div class="center">
+      <h3>No results found</h3>
+    </div>
+  {% endif %}
+
+{% include 'footer.html' %}
+{% endblock %}

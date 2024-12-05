@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="GET" action="{% url 'search' %}">
+    {{ form.as_p }}
+    <input type="submit" value="Search">
+</form>
+
+{% for post in posts %}
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.content }}</p>
+{% endfor %}
+{% endblock %}
